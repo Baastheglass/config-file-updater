@@ -63,7 +63,7 @@ class MyHandler(FileSystemEventHandler):
                             }
                         }
                 add_repository("config.json", folder_name, new_repo)
-
+                print("Repository added:", folder_name)
     def on_modified(self, event):
         pass
         #print(f"Modified: {event.src_path}")
