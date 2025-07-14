@@ -6,7 +6,10 @@ from pathlib import Path
 class MyHandler(FileSystemEventHandler):
     def on_created(self, event):
         print(f"Created: {event.src_path}")
-        print("Using pathlib:", Path(event.src_path).name)
+        folder_name = Path(event.src_path).name
+        print("Using pathlib:", folder_name)
+        if(".pid" not in folder_name):
+            print("Created:", folder_name)
     def on_modified(self, event):
         pass
         #print(f"Modified: {event.src_path}")
