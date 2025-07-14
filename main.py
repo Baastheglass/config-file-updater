@@ -38,7 +38,7 @@ def add_repository(json_file_path, repo_key, repo_data):
 class MyHandler(FileSystemEventHandler):
     def on_created(self, event):
         folder_name = Path(event.src_path).name
-        if(".pid" not in folder_name):
+        if(".pid" not in folder_name and ".swp" not in folder_name and ".git" not in folder_name):
             print("Created:", folder_name)
             os.chdir('/root/CI_Server')
             print(os.getcwd())
@@ -47,7 +47,7 @@ class MyHandler(FileSystemEventHandler):
                 new_repo = {
                             "name": folder_name,
                             "description": "Some description",
-                            "path": "/root/" + folder_name,
+                            "path": "/root",
                             "branches": {
                                 "1": {
                                     "name": "main",
