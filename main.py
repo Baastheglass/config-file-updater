@@ -42,39 +42,27 @@ class MyHandler(FileSystemEventHandler):
             print("Created:", folder_name)
             os.chdir('/root/CI_Server')
             print(os.getcwd())
-            with open("config.json", "r") as file:
-                data = file.read()
-                new_repo = {
-                            "name": folder_name,
-                            "description": "Some description",
-                            "path": "/root",
-                            "branches": {
-                                "1": {
-                                    "name": "main",
-                                    "events": ["push"],
-                                    "actions": {
-                                        "action1": {
-                                            "name": "Deploy",
-                                            "description": "Pull and deploy",
-                                            "commands": ["git pull"]
-                                        }
+            new_repo = {
+                        "name": folder_name,
+                        "description": "Some description",
+                        "path": "/root",
+                        "branches": {
+                            "1": {
+                                "name": "main",
+                                "events": ["push"],
+                                "actions": {
+                                    "action1": {
+                                        "name": "Deploy",
+                                        "description": "Pull and deploy",
+                                        "commands": ["git pull"]
                                     }
                                 }
                             }
                         }
-                add_repository("config.json", folder_name, new_repo)
-                print("Repository added:", folder_name)
-    def on_modified(self, event):
-        pass
-        #print(f"Modified: {event.src_path}")
-    def on_deleted(self, event):
-        pass
-        #print(f"Deleted: {event.src_path}")
-    def on_moved(self, event):
-        pass
-        #print(f"Moved: {event.src_path} -> {event.dest_path}")
-
-
+                    }
+            add_repository("config.json", folder_name, new_repo)
+            print("Repository added:", folder_name)
+    
 if __name__ == "__main__":
     server_path = "/root"
     print(os.getcwd())
