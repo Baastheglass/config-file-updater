@@ -11,6 +11,10 @@ class MyHandler(FileSystemEventHandler):
             print("Created:", folder_name)
             os.chdir('/root/CI_Server')
             print(os.getcwd())
+            with open("config.json", "r") as file:
+                data = file.read()
+            print(data)
+            
     def on_modified(self, event):
         pass
         #print(f"Modified: {event.src_path}")
