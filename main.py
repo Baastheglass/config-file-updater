@@ -2,6 +2,7 @@ import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 from pathlib import Path
+import os
 
 class MyHandler(FileSystemEventHandler):
     def on_created(self, event):
@@ -21,10 +22,12 @@ class MyHandler(FileSystemEventHandler):
         #print(f"Moved: {event.src_path} -> {event.dest_path}")
 
 if __name__ == "__main__":
+    server_path = "/root"
+    print(os.getcwd())
     path = "C:\\Users\\Well\\Desktop\\VSCODE\\config-file-updater"
     event_handler = MyHandler()
     observer = Observer()
-    observer.schedule(event_handler, path, recursive=True)
+    observer.schedule(event_handler, server_path, recursive=True)
     observer.start()
     print(f"Watching: {path}")
     try:
