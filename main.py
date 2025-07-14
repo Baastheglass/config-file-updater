@@ -6,8 +6,11 @@ import os
 
 class MyHandler(FileSystemEventHandler):
     def on_created(self, event):
+        folder_name = Path(event.src_path).name
         if(".pid" not in folder_name):
             print("Created:", folder_name)
+            os.chdir(os.path.dirname(event.src_path))
+            print(os.getcwd())
     def on_modified(self, event):
         pass
         #print(f"Modified: {event.src_path}")
