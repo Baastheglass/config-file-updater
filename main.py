@@ -6,9 +6,6 @@ import os
 
 class MyHandler(FileSystemEventHandler):
     def on_created(self, event):
-        print(f"Created: {event.src_path}")
-        folder_name = Path(event.src_path).name
-        print("Using pathlib:", folder_name)
         if(".pid" not in folder_name):
             print("Created:", folder_name)
     def on_modified(self, event):
